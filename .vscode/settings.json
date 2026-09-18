@@ -3,12 +3,12 @@
         {
             "ssh": "Disabled",
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "127.0.0.1",
             "port": 5433,
             "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "youtube_pg_conn",
-            "database": "youtube_db",
+            "name": "sqlProgram",
+            "database": "postgres",
             "username": "postgres"
         }
     ]
