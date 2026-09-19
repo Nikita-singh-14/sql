@@ -95,6 +95,7 @@ s.student_id IN (
 )
 -- ! We need to have total score student has earned and numbers of exams students has attempted
 -- ! We also need to have students's name and branch in the result
+
 SELECT student_id,
     SUM(score) as total_score,
     COUNT(*) as number_of_attempts
@@ -113,8 +114,10 @@ GROUP BY student_id
 ) as total_stats
 INNER JOIN students as s ON s.student_id = total_stats.student_id
 ORDER BY total_stats.total_score DESC;
+
 -- ! For each project get student's name, branch, project marks,
 -- ! and their average score on the same row
+
 SELECT student_id,
     AVG(score) as avg_score
 from exam_scores
@@ -135,9 +138,13 @@ AVG(score) as avg_score
 from exam_scores 
 GROUP BY student_id
 ) as exam_avg ON exam_avg.student_id = p.student_id;
+
+
 -- ! there is a need of a report where we have list of exam attempts
 -- ! which are above average (score > average class score)
 -- ! Also include name of the student in the report
+
+
 CREATE TABLE high_scorers_report (
     id SERIAL PRIMARY KEY,
     student_id INT NOT NULL,
