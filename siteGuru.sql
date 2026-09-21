@@ -68,9 +68,41 @@ GROUP BY u.user_id ORDER BY total_amount DESC;
 •	What does LEFT JOIN return?
 •	Provide one example where their results would differ.
 
+LEFT JOIN => It take all the rows from left table and common rows from right table 
+if there is no match it put NULL over there.
+
+INNER JOIN  => It take all the common rows from both the table
+
 6)Write a MySQL query to find the employee with the highest salary in each department.
 
 Table: employees ( id, name, department, salary )
 •	Write the query.
 •	Explain your approach step by step.
 •	If you use a subquery or GROUP BY, explain why.
+
+CREATE TABLE employees(
+    id INT PRIMARY KEY,
+    name VARCHAR(40),
+    department VARCHAR(20),
+    salary INT
+);
+
+INSERT INTO employees(
+    id,
+    name,
+    department,
+    salary
+)VALUES
+(1, 'anu', 'frontend developer', 100000),
+(2, 'bitu', 'frontend developer', 120000),
+(3, 'bala', 'backend developer', 70000),
+(4, 'sakshi', 'AIML', 80000);
+
+SELECT department, MAX(salary) from employees GROUP BY department;
+
+SELECT name, department, salary FROM employees AS e 
+WHERE salary = (
+    SELECT MAX(salary) from employees WHERE department=e.department
+);
+
+
